@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <title>Company Directory</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="./employees.png">
+        <!-- CSS Stylesheets -->
+        <link rel="stylesheet" href="./libraries/bootstrap/bootstrap.min.css">
+        <link rel="stylesheet" href="./libraries/css/stylesheet.min.css">
+    </head>
+
+    <body>        
+        <nav>
+            <div id="staffResultsDetails">
+                <div class="row">
+                    <div class="col">
+                        <input type="search" id="staffInput" placeholder="Search Employees" class="form-control input">
+                    </div>                    
+                </div>                
+                <div class="row">
+                    <div class="col">
+                        <select class="form-select-sm depSelect" name="department" id="staffDepSelect"></select>
+                    </div>
+                    <div class="col">
+                        <select class="form-select-sm siteSelect" name="site" id="staffSiteSelect"></select>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" class="btn btn-outline-dark createButton" data-bs-toggle="modal" data-bs-target="#createStaffModal" id="addStaffButton">Add Employee</button>
+
+            <div id="departmentResultsDetails">
+                <div class="row">
+                    <div class="col">
+                        <input type="search" id="departmentInput" placeholder="Search Departments" class="form-control input">
+                    </div>                    
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <select class="form-select-sm siteSelect" name="site" id="depSiteSelect"></select>
+                    </div>
+                </div>                
+            </div>
+
+            <button type="button" class="btn btn-outline-dark createButton" data-bs-toggle="modal" data-bs-target="#createDepartmentModal" id="addDepartmentButton">Add Department</button>
+
+            <div id="siteResultsDetails">
+                <div class="row">
+                    <div class="col">
+                        <input type="search" id="siteInput" placeholder="Search Locations" class="form-control input">
+                    </div>
+                </div>                
+            </div>
+
+            <button type="button" class="btn btn-outline-dark createButton" data-bs-toggle="modal" data-bs-target="#createSiteModal" id="addSiteButton">Add Location</button>
+
+            <div>
+                <div class="row g-2">
+                    <div class="col">
+                        <button type="button" class="btn btn-outline-dark navButton" id="allStaffButton">Employees</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-outline-dark navButton" id="allDepartmentsButton">Departments</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-outline-dark navButton" id="allSitesButton">Locations</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <main>
+            <!-- Create Employee, Department, and Site forms -->
+            <div class="modal fade" id="createStaffModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title">Add New Employee</h3>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form name="createStaffForm" class="form" id="createStaffForm" data-toggle="validator">
+                            <div class="modal-body" id="createStaffModalBody">
+                                <div class="mb-3 form-group">
+                                    <label for="createStaffFirstName" class="form-label">First Name</label>
+                                    <input type="text" class="form-control" name="firstName" id="createStaffFirstName" pattern="[A-Za-z ]{1,30}" placeholder="John" data-pattern-error="Names must be no longer than 30 letters, and contain no special characters" data-required-error="Required" required>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="mb-3 form-group">
+                                    <label for="createStaffLastName" class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" name="lastName" id="createStaffLastName" pattern="[A-Za-z ]{1,30}" placeholder="Smith" data-pattern-error="Names must be no longer than 30 letters, and contain no special characters" data-required-error="Required" required>
+                                    <div class="help-block with-errors"></div>
+                                </div>                                
+                                <div class="mb-3 form-group">
+                                    <label for="createStaffEmail" class="form-label">Email Address</label>
+                                    <input type="email" class="form-control" name="email" id="createStaffEmail" placeholder="JSmith@gmail.com" data-required-error="Required" required>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="mb-3 form-group">
+                                    <label for="createStaffJob" class="form-label">Job Title</label>
+                                    <input type="text" class="form-control" name="job" id="createStaffJob" pattern="[A-Za-z0-9_ ]{1,50}" data-pattern-error="Names must be no longer than 50 letters, and contain no special characters">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="mb-3 form-group">
+                                    <label for="createStaffDepartment" class="form-label">Department</label>
+                                    <select class="form-select" name="department" id="createStaffDepartment"></select>
+                                </div>    
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-outline-dark listItemButton" id="confirm1">Confirm</button>
+                                <button type="button" class="btn btn-outline-dark listItemButton" data-bs-toggle="modal" data-bs-target="#createStaffModal">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="createDepartmentModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title">Add New Department</h3>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form name="createDepartmentForm" class="form" id="createDepartmentForm" data-toggle="validator">
+                            <div class="modal-body" id="createDepartmentModalBody">                           
+                                <div class="mb-3 form-group">
+                                    <label for="createDepartmentName" class="form-label">Department Name</label>
+                                    <input type="text" class="form-control" name="name" id="createDepartmentName" pattern="[A-Za-z0-9_ ]{1,50}" placeholder="New Department" data-pattern-error="Names must be no longer than 50 letters, and contain no special characters" data-required-error="Required" required>
+                                    <div class="help-block with-errors"></div>
+                                </div>                                
+                                <div class="mb-3 form-group">
+                                    <label for="createDepartmentSite" class="form-label">Site</label>
+                                    <select class="form-select" name="site" id="createDepartmentSite"></select>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-outline-dark listItemButton" id="confirm2">Confirm</button>
+                                <button type="button" class="btn btn-outline-dark listItemButton" data-bs-toggle="modal" data-bs-target="#createDepartmentModal">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="createSiteModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title">Add New Location</h3>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form name="createSiteForm" class="form" id="createSiteForm" data-toggle="validator">
+                            <div class="modal-body" id="createSiteModalBody">                                                            
+                                <div class="mb-3 form-group">
+                                    <label for="createSiteName" class="form-label">Location Name</label>
+                                    <input type="text" class="form-control" name="name" id="createSiteName" pattern="[A-Za-z0-9_ ]{1,50}" placeholder="New Location" data-pattern-error="Names must be no longer than 50 letters, and contain no special characters" data-required-error="Required" required>
+                                    <div class="help-block with-errors"></div>
+                                </div>                            
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-outline-dark listItemButton" id="confirm3">Confirm</button>
+                                <button type="button" class="btn btn-outline-dark listItemButton" data-bs-toggle="modal" data-bs-target="#createSiteModal">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Read Employee, Department, and Site modals -->
+            <div class="modal fade" id="readStaffModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title" id="staffName"></h3>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" id="readStaffModalBody">                                                             
+                            <table class="modal-table">                                    
+                                <tr>
+                                    <th>Email</th>
+                                    <td id="staffEmail" class="text-end"></td>
+                                </tr>                                
+                                <tr>
+                                    <th>Job Role</th>
+                                    <td id="staffJob" class="text-end"></td>
+                                </tr>
+                                <tr>
+                                    <th>Department</th>
+                                    <td id="staffDepartment" class="text-end"></td>
+                                </tr>
+                                <tr>
+                                    <th>Location</th>
+                                    <td id="staffLocation" class="text-end"></td>
+                                </tr>
+                            </table>                            
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-dark listItemButton" data-bs-toggle="modal" data-bs-target="#readStaffModal">Back</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="readDepartmentModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title" id="departmentName"></h3>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" id="readDepartmentModalBody">                                                             
+                            <table class="modal-table">                                                             
+                                <tr>
+                                    <th>Location</th>
+                                    <td id="departmentLocation" class="text-end"></td>
+                                </tr>
+                                <tr>
+                                    <th>Number of Employees</th>
+                                    <td id="departmentStaffNumber" class="text-end"></td>
+                                </tr>
+                            </table>                                                  
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-dark listItemButton" data-bs-toggle="modal" data-bs-target="#readDepartmentModal">Back</button>
+                        </div>                       
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="readSiteModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title" id="siteName"></h3>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" id="readSiteModalBody">                                                             
+                            <table class="modal-table">                                
+                                <tr>
+                                    <th>Number of Departments</th>
+                                    <td id="siteDepartmentNumber" class="text-end"></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-dark listItemButton" data-bs-toggle="modal" data-bs-target="#readSiteModal">Back</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Update Employee, Department, and Site forms -->
+            <div class="modal fade" id="editStaffModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title">Update Employee Details...</h3>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" id="editStaffModalBody">
+                            <form name="editStaffForm" class="form" id="editStaffForm" data-toggle="validator">                                
+                                <div class="mb-3 form-group">
+                                    <label for="editStaffFirstName" class="form-label">First Name</label>
+                                    <input type="text" class="form-control" name="firstName" id="editStaffFirstName" pattern="[A-Za-z ]{1,30}" data-pattern-error="Names must be no longer than 30 letters, and contain no special characters" data-required-error="Required" required>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="mb-3 form-group">
+                                    <label for="editStaffLastName" class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" name="lastName" id="editStaffLastName" pattern="[A-Za-z ]{1,30}" data-pattern-error="Names must be no longer than 30 letters, and contain no special characters" data-required-error="Required" required>
+                                    <div class="help-block with-errors"></div>
+                                </div>                                                               
+                                <div class="mb-3 form-group">
+                                    <label for="editStaffEmail" class="form-label">Email Address</label>
+                                    <input type="email" class="form-control" name="email" id="editStaffEmail" data-required-error="Required" required>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="mb-3 form-group">
+                                    <label for="editStaffJob" class="form-label">Job Title</label>
+                                    <input type="text" class="form-control" name="job" id="editStaffJob" pattern="[A-Za-z0-9_ ]{1,50}" data-pattern-error="Names must be no longer than 50 letters, and contain no special characters">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="mb-3 form-group">
+                                    <label for="editStaffDepartment" class="form-label">Department</label>
+                                    <select class="form-select" name="department" id="editStaffDepartment"></select>
+                                </div>
+                                <div class="mb-3 form-group">
+                                    <input class="form-control hiddenId" name="id" id="editStaffId"></input>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-outline-dark listItemButton" id="confirm4">Confirm</button>
+                            <button type="button" class="btn btn-outline-dark listItemButton" data-bs-toggle="modal" data-bs-target="#editStaffModal">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+
+            <div class="modal fade" id="editDepartmentModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title">Update Department Details...</h3>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" id="editDepartmentModalBody">
+                            <form name="editDepartmentForm" class="form" id="editDepartmentForm" data-toggle="validator">                                
+                                <div class="mb-3 form-group">
+                                    <label for="editDepartmentName" class="form-label">Department Name</label>
+                                    <input type="text" class="form-control" name="name" id="editDepartmentName" pattern="[A-Za-z0-9_ ]{1,50}" data-pattern-error="Names must be no longer than 50 letters, and contain no special characters" data-required-error="Required" required>
+                                    <div class="help-block with-errors"></div>
+                                </div>                                                           
+                                <div class="mb-3 form-group">
+                                    <label for="editDepartmentSite" class="form-label">Site</label>
+                                    <select class="form-select" name="site" id="editDepartmentSite"></select>
+                                </div>
+                                <div class="mb-3 form-group">
+                                    <input class="form-control hiddenId" name="id" id="editDepartmentId"></input>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-outline-dark listItemButton" id="confirm5">Confirm</button>
+                            <button type="button" class="btn btn-outline-dark listItemButton" data-bs-toggle="modal" data-bs-target="#editDepartmentModal">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+
+            <div class="modal fade" id="editSiteModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title">Update Location Details...</h3>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" id="editSiteModalBody">
+                            <form name="editSiteForm" class="form" id="editSiteForm" data-toggle="validator">                                
+                                <div class="mb-3 form-group">
+                                    <label for="editSiteName" class="form-label">Site Name</label>
+                                    <input type="text" class="form-control" name="name" id="editSiteName" pattern="[A-Za-z0-9_ ]{1,50}" data-pattern-error="Names must be no longer than 50 letters, and contain no special characters" data-required-error="Required" required>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="mb-3 form-group">
+                                    <input class="form-control hiddenId" name="id" id="editSiteId"></input>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-outline-dark listItemButton" id="confirm6">Confirm</button>
+                            <button type="button" class="btn btn-outline-dark listItemButton" data-bs-toggle="modal" data-bs-target="#editSiteModal">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+            <!-- All "Confirm Action and Error" Modals -->
+            <div class="modal fade alert" id="createStaffConfirm">
+                <div class="modal-dialog">
+                    <div class="modal-content">                        
+                        <div class="modal-body">
+                            <h4 class="modal-title">Are you sure you wish to create this Employee?</h4>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-dark listItemButton" id="confirm1b">Confirm</button>
+                            <button type="button" class="btn btn-outline-dark listItemButton alertCancel">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade alert" id="createDepartmentConfirm">
+                <div class="modal-dialog">
+                    <div class="modal-content">                        
+                        <div class="modal-body">
+                            <h4 class="modal-title">Are you sure you wish to create this Department?</h4>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-dark listItemButton" id="confirm2b">Confirm</button>
+                            <button type="button" class="btn btn-outline-dark listItemButton alertCancel">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade alert" id="createSiteConfirm">
+                <div class="modal-dialog">
+                    <div class="modal-content">                        
+                        <div class="modal-body">
+                            <h4 class="modal-title">Are you sure you wish to create this Location?</h4>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-dark listItemButton" id="confirm3b">Confirm</button>
+                            <button type="button" class="btn btn-outline-dark listItemButton alertCancel">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade alert" id="createSuccess">
+                <div class="modal-dialog">
+                    <div class="modal-content">                        
+                        <div class="modal-body">
+                            <p id="createSuccessText"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-dark listItemButton alertCancel">Dismiss</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal fade alert" id="editStaffConfirm">
+                <div class="modal-dialog">
+                    <div class="modal-content">                        
+                        <div class="modal-body">
+                            <h4 class="modal-title">Are you sure you wish to update the details of this Employee?</h4>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-dark listItemButton" id="confirm4b">Confirm</button>
+                            <button type="button" class="btn btn-outline-dark listItemButton alertCancel">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade alert" id="editDepartmentConfirm">
+                <div class="modal-dialog">
+                    <div class="modal-content">                        
+                        <div class="modal-body">
+                            <h4 class="modal-title">Are you sure you wish to update the details of this Department?</h4>            
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-dark listItemButton" id="confirm5b">Confirm</button>
+                            <button type="button" class="btn btn-outline-dark listItemButton alertCancel">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade alert" id="editSiteConfirm">
+                <div class="modal-dialog">
+                    <div class="modal-content">                        
+                        <div class="modal-body">
+                            <h4 class="modal-title">Are you sure you wish to update the details of this Location?</h4>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-dark listItemButton" id="confirm6b">Confirm</button>
+                            <button type="button" class="btn btn-outline-dark listItemButton alertCancel">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>      
+
+            <div class="modal fade alert" id="editSuccess">
+                <div class="modal-dialog">
+                    <div class="modal-content">                        
+                        <div class="modal-body">
+                            <p id="editSuccessText"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-dark listItemButton alertCancel">Dismiss</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade alert" id="deleteStaffConfirm">
+                <div class="modal-dialog">
+                    <div class="modal-content">                        
+                        <div class="modal-body">
+                            <h4 class="modal-title">Are you sure you wish to delete this employee's records?</h4>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-dark listItemButton" id="confirmStaffDelete">Confirm</button>
+                            <button type="button" class="btn btn-outline-dark listItemButton alertCancel">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade alert" id="deleteDepartmentConfirm">
+                <div class="modal-dialog">
+                    <div class="modal-content">                        
+                        <div class="modal-body">
+                            <h4 class="modal-title">Are you sure you wish to delete this Department?</h4>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-dark listItemButton" id="confirmDepartmentDelete">Confirm</button>
+                            <button type="button" class="btn btn-outline-dark listItemButton alertCancel">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade alert" id="deleteSiteConfirm">
+                <div class="modal-dialog">
+                    <div class="modal-content">                        
+                        <div class="modal-body">
+                            <h4 class="modal-title">Are you sure you wish to delete this Location?</h4>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-dark listItemButton" id="confirmSiteDelete">Confirm</button>
+                            <button type="button" class="btn btn-outline-dark listItemButton alertCancel">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade alert" id="deleteSuccess">
+                <div class="modal-dialog">
+                    <div class="modal-content">                        
+                        <div class="modal-body">
+                            <p id="deleteSuccessText"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-dark listItemButton alertCancel">Dismiss</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade alert" id="validationError">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4>Error</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p id="errorMessage"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-dark listItemButton" data-bs-toggle="modal" data-bs-target="#validationError">Dismiss</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search Results Lists -->            
+            <p id="noResults">Search returned no results.</p>                              
+            <ul class="list-group list-group-flush mainList" id="allStaff"></ul>
+            <ul class="list-group list-group-flush mainList" id="allDepartments"></ul>
+            <ul class="list-group list-group-flush mainList" id="allSites"></ul>
+
+        </main>
+
+        <div id="preloader"></div>
+        
+        <!-- Javascript script files -->
+        <script src="./libraries/jQuery/jquery.min.js"></script>
+        <script src="./libraries/bootstrap/bootstrap.bundle.min.js"></script>
+        <script src="./libraries/bootstrapValidator/validator.min.js"></script>
+        <script src="./libraries/js/script.js"></script>
+
+    </body>
+</html>

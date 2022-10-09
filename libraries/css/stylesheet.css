@@ -1,0 +1,237 @@
+/* Company Staff Directory App - Main Stylesheet */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+}
+
+/* Preloader */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    overflow: hidden;
+    background: rgb(45, 45, 45);
+}
+
+#preloader:before {
+    content: "";
+    position: fixed;
+    top: calc(50% - 30px);
+    left: calc(50% - 30px);
+    border: 6px solid black;
+    border-top: 6px solid wheat;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    -webkit-animation: animate-preloader 1s linear infinite;
+    animation: animate-preloader 1s linear infinite;
+}
+
+@-webkit-keyframes animate-preloader {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes animate-preloader {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+/* Main App */
+/* Global */
+html, body {
+    margin: 0px;
+    height: 100%;
+    width: 100%;    
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    background-color: var(--first-color);
+}
+
+:root {
+    --fa-border-radius: 50%;
+    --fa-border-color: black;
+    --first-color: rgb(190, 235, 235);
+    --second-color: rgb(100, 150, 250);
+    --third-color: rgb(175, 30, 30);    
+    --fa-border-padding: 5px
+}
+
+.modal-backdrop {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.alert {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.col {
+    margin-top: 0.5rem;
+}
+
+/* Nav */
+nav {
+    display: flex;
+    justify-content: space-between;   
+    width: 90%;
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    background-color: rgb(190, 235, 235);
+    padding: 0.5rem;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.navButton {
+    background-color: white;
+    border-width: 2px;
+    font-weight: bold;
+}
+
+.navButton:hover {
+    background-color: var(--second-color);
+}
+
+.createButton {
+    margin-top: 0.5rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    background-color: white;
+}
+
+.createButton:hover {
+    background-color: var(--second-color);
+}
+
+/* Main */
+main {
+    margin-top: 7rem;
+    height: 100%;
+    width: 90%;
+}
+
+#noResults {
+    position: fixed;
+    z-index: 1;
+    padding-left: 0.5rem;
+    font-style: italic;   
+}
+
+.flexDiv {    
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    margin-left: 0.2rem;
+    margin-right: 2rem;
+}
+
+.list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 5;
+}
+
+.listItemButton {
+    margin-left: 0.5rem;
+}
+
+.listItemButton:hover {
+    background-color: var(--second-color);
+}
+
+.modal-header {
+    background-color: var(--second-color);
+}
+
+.modal-table {
+    width: 100%;
+}
+
+.modal-table tr {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.hiddenId {
+    display: none;
+}
+
+.help-block {    
+    font-style: italic;
+    color: red;
+}
+
+/* Media Queries */
+@media only screen and (max-width: 1200px) {
+    nav {
+        flex-wrap: wrap-reverse;
+        width: 100%;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+
+    main {
+        margin-top: 10rem;
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 963px) {
+    nav {
+        justify-content: center;
+    }
+}
+
+@media only screen and (max-width: 570px) {
+    main {
+        margin-top: 12rem;
+    }
+    .flexDiv {
+        margin-right: 0;
+    } 
+}
+
+@media only screen and (max-width: 430px) {    
+    .navButton {
+        font-size: 90%;
+    }
+
+    .listItemButton {
+        margin-left: 0.2rem;
+    }
+
+    .list-group-item {
+        flex-direction: column;
+    }    
+}
+
+@media only screen and (max-width: 407px) {    
+    main {
+        margin-top: 16.5rem;
+    } 
+}
