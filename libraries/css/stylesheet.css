@@ -1,11 +1,11 @@
-/* Company Staff Directory App - Main Stylesheet */
-
+/* Plant Directory App - Main Stylesheet */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     font-size: 18px;
 }
+
 
 /* Preloader */
 #preloader {
@@ -55,7 +55,28 @@
     }
 }
 
+
 /* Main App */
+/* Font */
+@font-face {
+    font-family: 'Baskervville';
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/baskervville/v13/YA9Kr0yU4l_XOrogbkun3kQQtamrrvI.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'Baskervville';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/baskervville/v13/YA9Ur0yU4l_XOrogbkun3kQQsJmp.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+
 /* Global */
 html, body {
     margin: 0px;
@@ -67,12 +88,13 @@ body {
     display: flex;
     justify-content: center;
     background-color: var(--first-color);
+    font-family: Baskervville, 'Times New Roman', Times, serif;
 }
 
 :root {
     --fa-border-radius: 50%;
     --fa-border-color: black;
-    --first-color: rgb(190, 235, 235);
+    --first-color: rgb(230, 219, 199);
     --second-color: rgb(100, 150, 250);
     --third-color: rgb(175, 30, 30);    
     --fa-border-padding: 5px
@@ -98,31 +120,10 @@ nav {
     z-index: 1000;
     position: fixed;
     top: 0;
-    background-color: rgb(190, 235, 235);
+    background-color: rgb(230, 219, 199);
     padding: 0.5rem;
     padding-left: 0;
     padding-right: 0;
-}
-
-.navButton {
-    background-color: white;
-    border-width: 2px;
-    font-weight: bold;
-}
-
-.navButton:hover {
-    background-color: var(--second-color);
-}
-
-.createButton {
-    margin-top: 0.5rem;
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
-    background-color: white;
-}
-
-.createButton:hover {
-    background-color: var(--second-color);
 }
 
 /* Main */
@@ -135,7 +136,7 @@ main {
 #noResults {
     position: fixed;
     z-index: 1;
-    padding-left: 0.5rem;
+    padding-left: 0.5rem;    
     font-style: italic;   
 }
 
@@ -199,39 +200,4 @@ main {
         margin-top: 10rem;
         width: 100%;
     }
-}
-
-@media only screen and (max-width: 963px) {
-    nav {
-        justify-content: center;
-    }
-}
-
-@media only screen and (max-width: 570px) {
-    main {
-        margin-top: 12rem;
-    }
-    .flexDiv {
-        margin-right: 0;
-    } 
-}
-
-@media only screen and (max-width: 430px) {    
-    .navButton {
-        font-size: 90%;
-    }
-
-    .listItemButton {
-        margin-left: 0.2rem;
-    }
-
-    .list-group-item {
-        flex-direction: column;
-    }    
-}
-
-@media only screen and (max-width: 407px) {    
-    main {
-        margin-top: 16.5rem;
-    } 
 }
