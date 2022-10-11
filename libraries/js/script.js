@@ -14,41 +14,36 @@ $(window).on('load', function () {
 $(document).ready(function() {
 
     //State
-    let sites = [];
-    let siteId = 0;
+    let Plants = [];
+    let PlantId = 0;
     let selectedId;
 
     //Initial API calls
-    getAllSites();   
+    getAllPlants();   
 
     // AJAX functions     
-    //Get all sites
-    function getAllSites() {
+    //Get all plants
+    function getAllPlants() {
         $.ajax({
-            url: "libraries/php/getAllSites.php",
+            url: "libraries/php/getAllPlants.php",
             type: "GET",
             success: function(result) {
-                // console.log(JSON.stringify(result));
+                console.log(JSON.stringify(result));
                 if (result.status.name == "ok") {
-                    $("#allSites").empty();
-                    $("#allDepartments, #allStaff, #departmentResultsDetails, #staffResultsDetails, #addStaffButton, #addDepartmentButton").hide();                   
+                    $("#allPlants").empty();                  
                     let array = result['data'];
                     let listItem;
                     for (let i = 0; i < array.length; i++) {
-                        listItem = '<li class="list-group-item" id="LOC' + array[i]['id'] + '">'                            
-                            + '<p class="siteInstance">' + array[i]['name'] + '</p>'
+                        listItem = '<li class="list-group-item" id="Plant' + array[i]['id'] + '">'                            
+                            + '<p class="plantInstance">' + array[i]['name'] + '</p>'
                             + '<div class="flexDiv">'
                             + '<button type="button" class="btn btn-outline-dark listItemButton readSite" value="LOC' + array[i]['id'] + '">View</button>'
-                            + '<button type="button" class="btn btn-outline-dark listItemButton updateSite" value="LOC' + array[i]['id'] + '">Update</button>'
-                            + '<button type="button" class="btn btn-outline-dark listItemButton confirm9" value="LOC' + array[i]['id'] + '">Delete</button>'
                             + '</div>'
                             + '</li>';
-                        $("#allSites").append(listItem);
+                        $("#allPlants").append(listItem);
                     };
-                    $("#allSites, #siteResultsDetails, #addSiteButton").show();
-                    readSiteClickHandler();
-                    updateSiteClickHandler();
-                    deleteSiteClickHandler();
+                    $("#allPlants, #siteResultsDetails").show();
+                    readSiteClickHandler();                    
                     $('#siteInput').val('');
                 };
             },

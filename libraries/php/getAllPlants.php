@@ -1,8 +1,4 @@
 <?php
-
-	// example use from browser
-	// http://localhost/companydirectory/libraries/php/getAllSites.php
-
 	//Open a connection to the database
 	$executionStartTime = microtime(true);
 	include("config.php");
@@ -24,7 +20,7 @@
 	}	
 
 	//On success...	
-	$query = 'SELECT id, name FROM location ORDER BY name'; // SQL does not accept parameters and so is not prepared
+	$query = 'SELECT id, name FROM plantlist ORDER BY name'; // SQL does not accept parameters and so is not prepared
 
 	$result = $conn->query($query);
 	

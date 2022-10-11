@@ -5,45 +5,49 @@
         <title>Plant List</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="icon" href="./employees.png">
+        <!-- FAVICON -->
         <!-- CSS Stylesheets -->
         <link rel="stylesheet" href="./libraries/bootstrap/bootstrap.min.css">
-        <link rel="stylesheet" href="./libraries/css/stylesheet.min.css">
+        <link rel="stylesheet" href="./libraries/css/stylesheet.css">
     </head>
 
     <body>        
         <nav>            
 
-            <div id="siteResultsDetails">
+            <div id="searchbar">
                 <div class="row">
                     <div class="col">
-                        <input type="search" id="siteInput" placeholder="Search plant list..." class="form-control input">
+                        <input type="search" id="plantSearch" placeholder="Search plant list..." class="form-control input">
                     </div>
                 </div>                
+            </div>
+
+            <div id="companyLogo">
+                <img src="./libraries/images/logo.PNG" alt="Susan Hampton Garden Plans">
             </div>
             
         </nav>
 
         <main>            
 
-            <!-- Read Employee, Department, and Site modals -->           
-            <div class="modal fade" id="readSiteModal">
+            <!-- Plant details modal -->           
+            <div class="modal fade" id="plantDetailsModal">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h3 class="modal-title" id="siteName"></h3>
+                            <h3 class="modal-title" id="plantName"></h3>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body" id="readSiteModalBody">                                                             
-                            <table class="modal-table">                                
+                        <div class="modal-body" id="plantModalBody">                                                             
+                            <table class="modal-table">                              
                                 <tr>
-                                    <th>Number of Departments</th>
-                                    <td id="siteDepartmentNumber" class="text-end"></td>
+                                    <th>plant</th>
+                                    <td id="plantID" class="text-end"></td>
                                 </tr>
                             </table>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-dark listItemButton" data-bs-toggle="modal" data-bs-target="#readSiteModal">Back</button>
+                            <button type="button" class="btn btn-outline-dark listItemButton" data-bs-toggle="modal" data-bs-target="#plantDetailsModal">Back</button>
                         </div>
                     </div>
                 </div>
@@ -51,7 +55,7 @@
 
             <!-- Search Results Lists -->            
             <p id="noResults">Search returned no results.</p>
-            <ul class="list-group list-group-flush mainList" id="allSites"></ul>
+            <ul class="list-group list-group-flush mainList" id="allPlants"></ul>
 
         </main>
 
