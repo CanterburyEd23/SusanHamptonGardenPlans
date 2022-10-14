@@ -28,14 +28,14 @@ $(document).ready(function() {
             url: "libraries/php/getAllPlants.php",
             type: "GET",
             success: function(result) {
-                console.log(JSON.stringify(result));
+                // console.log(JSON.stringify(result));
                 if (result.status.name == "ok") {
                     $("#allPlants").empty();                  
                     let array = result['data'];
                     let listItem;
                     for (let i = 0; i < array.length; i++) {
                         listItem = '<li class="list-group-item" id="Plant' + array[i]['id'] + '">'                            
-                            + '<p class="plantInstance">' + array[i]['name'] + '</p>'
+                            + '<p class="plantInstance">' + array[i]['plantName'] + '</p>'
                             + '<div class="flexDiv">'
                             + '<button type="button" class="btn btn-outline-dark listItemButton readSite" value="LOC' + array[i]['id'] + '">View</button>'
                             + '</div>'
@@ -94,17 +94,17 @@ $(document).ready(function() {
         });
     };
 
-    //Listener for the siteInput textbox
-    $("#siteInput").keyup(function() {
-        filterSiteList();
+    //Listener for the searchbar textbox
+    $("#plantSearch").keyup(function() {
+        filterPlantList();
     });
        
     //Filter triggered by the siteInput textbox
-    function filterSiteList() {        
+    function filterPlantList() {        
         let txtValue;
-        let input = $('#siteInput');
+        let input = $('#plantSearch');
         let filter = input.val().toUpperCase();
-        let list = $("#allSites");
+        let list = $("#allPlants");
         let listItem = list.children();
         let p;      
         for (let i = 0; i < listItem.length; i++) {
