@@ -68,7 +68,8 @@ $(document).ready(function() {
                     let array = result['data'];
                     selectedId = array[0]["id"];                    
                     $("#plantName").html(array[0]["plantName"]);
-                    $("#plantImage").attr("href", array[0]["image_url"]);
+                    $("#plantImage").attr("src", array[0]["image_url"]);
+                    $("#photographer").html("Photographer: " + array[0]["imageAuthor"]);
                     $("#plantDesc").html(array[0]["description"]);
                                         
                 };
