@@ -66,10 +66,11 @@ $(document).ready(function() {
                 console.log(JSON.stringify(result));
                 if (result.status.name == "ok") {
                     let array = result['data'];
-                    selectedId = array[0]["id"];
-                    $("#editSiteId").attr("value", array[0]["id"]);
+                    selectedId = array[0]["id"];                    
                     $("#plantName").html(array[0]["plantName"]);
-                    $("#editSiteName").attr("value", array[0]["name"]);                    
+                    $("#plantImage").attr("href", array[0]["image_url"]);
+                    $("#plantDesc").html(array[0]["description"]);
+                                        
                 };
             },
             error: function(jqXHR, exception) {

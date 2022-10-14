@@ -23,7 +23,7 @@
 	// SQL statement accepts parameters and so is prepared to avoid SQL injection.
 	// $_REQUEST used for development / debugging. Remember to change to $_GET for production
 
-	$query = $conn->prepare('SELECT id, plantName, "description", image_url, imageLicence_url, imageAuthor FROM plantlist WHERE id =  ?');
+	$query = $conn->prepare('SELECT id, plantName, description, image_url, imageLicence_url, imageAuthor FROM plantlist WHERE id =  ?');
 	$query->bind_param("i", $_GET['ID']);
 	$query->execute();
 	
