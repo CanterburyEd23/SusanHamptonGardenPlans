@@ -37,14 +37,14 @@ $(document).ready(function() {
                         listItem = '<li class="list-group-item" id="Plant' + array[i]['id'] + '">'                            
                             + '<p class="plantInstance">' + array[i]['plantName'] + '</p>'
                             + '<div class="flexDiv">'
-                            + '<button type="button" class="btn btn-outline-dark listItemButton readSite" value="LOC' + array[i]['id'] + '">View</button>'
+                            + '<button type="button" class="btn btn-outline-dark listItemButton readPlant" value="LOC' + array[i]['id'] + '">View</button>'
                             + '</div>'
                             + '</li>';
                         $("#allPlants").append(listItem);
                     };
-                    $("#allPlants, #siteResultsDetails").show();
-                    readSiteClickHandler();                    
-                    $('#siteInput').val('');
+                    $("#allPlants").show();
+                    readPlantClickHandler();                    
+                    $('#plantSearch').val('');
                 };
             },
             error: function(jqXHR, exception) {
@@ -54,23 +54,22 @@ $(document).ready(function() {
         });
     };    
 
-    //Get site by ID function
-    function getSiteById(id1) {
+    //Get Plant by ID function
+    function getPlantById(id1) {
         $.ajax({
-            url: "libraries/php/getSiteById.php",
+            url: "libraries/php/getPlantById.php",
             type: "GET",
             data: {
                 ID: id1
             },
             success: function(result) {
-                // console.log(JSON.stringify(result));
+                console.log(JSON.stringify(result));
                 if (result.status.name == "ok") {
                     let array = result['data'];
                     selectedId = array[0]["id"];
                     $("#editSiteId").attr("value", array[0]["id"]);
-                    $("#siteName").html(array[0]["name"]);
-                    $("#editSiteName").attr("value", array[0]["name"]);
-                    siteDepartmentNumberCheck();
+                    $("#plantName").html(array[0]["plantName"]);
+                    $("#editSiteName").attr("value", array[0]["name"]);                    
                 };
             },
             error: function(jqXHR, exception) {
@@ -82,24 +81,24 @@ $(document).ready(function() {
 
     //Non-AJAX Functions
         
-    //readSite button click handler
-    function readSiteClickHandler() {
-        $(".readSite").each(function() {
+    //readPlant button click handler
+    function readPlantClickHandler() {
+        $(".readPlant").each(function() {
             $(this).click(function() {
                 let id = $(this).val().slice(3);
-                // console.log(id);
-                getSiteById(id);
-                $('#readSiteModal').modal("show");
+                console.log(id);
+                getPlantById(id);
+                $('#plantDetailsModal').modal("show");
             });
         });
     };
 
-    //Listener for the searchbar textbox
+    //Listener for the typing in the searchbar
     $("#plantSearch").keyup(function() {
         filterPlantList();
     });
        
-    //Filter triggered by the siteInput textbox
+    //Filter triggered by the searchbar
     function filterPlantList() {        
         let txtValue;
         let input = $('#plantSearch');
