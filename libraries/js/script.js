@@ -70,6 +70,7 @@ $(document).ready(function() {
                     $("#plantName").html(array[0]["plantName"]);
                     $("#plantImage").attr("src", array[0]["image_url"]);
                     $("#photographer").html("Photographer: " + array[0]["imageAuthor"]);
+                    $("#licence").attr("href", array[0]["imageLicence_url"]);
                     $("#plantDesc").html(array[0]["description"]);
                                         
                 };

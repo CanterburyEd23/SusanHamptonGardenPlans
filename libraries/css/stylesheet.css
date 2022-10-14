@@ -100,11 +100,11 @@ body {
 }
 
 .modal-backdrop {
-    background-color: rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.7);
 }
 
 .alert {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.7);
 }
 
 .col {
@@ -172,6 +172,10 @@ main {
 
 .modal-table {
     width: 100%;
+}
+
+#plantImage {
+    max-width: 100%;
 }
 
 .modal-table tr {
