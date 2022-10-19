@@ -599,4 +599,3 @@ INSERT INTO `plantlist` (`id`, `plantName`, `description`, `image_url`, `imageLi
   (583, 'Abelia', 'shrub', './libraries/images/583.jpg', 'https://creativecommons.org/licenses/by-sa/2.0/legalcode', 'Leanora');  
 	
 /*!40000 ALTER TABLE `plantlist` ENABLE KEYS */;
-
