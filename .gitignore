@@ -1,2 +1,5 @@
 libraries/php/config.php
 BigPlantList.ods
+libraries/bootstrap
+libraries/bootstrapValidator
+libraries/jQuery
