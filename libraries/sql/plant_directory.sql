@@ -72,7 +72,7 @@ INSERT INTO `plantlist` (`id`, `plantName`, `description`, `image_url`, `imageLi
   (56, 'Bergenia Silberlicht', 'Round leafed perennial with spring flowers of very pale pink/white', './libraries/images/56.jpg', 'https://creativecommons.org/licenses/by-sa/2.0/legalcode', 'Leanora'),
   (57, 'Bergenia Sunningdale', 'Rounded leaves which colour up in winter and pink spring flowers', './libraries/images/57.jpg', 'https://creativecommons.org/licenses/by-sa/2.0/legalcode', 'Leanora'),
   (58, 'Brunnera macrophylla "Jack Frost"', 'Large heart shaped leaves with silver white centre, blue flowers', './libraries/images/58.jpg', 'https://creativecommons.org/licenses/by-sa/2.0/legalcode', 'Leanora'),
-  (69, 'Brunnera macrophylla "Mr Morse"', 'Large heart shaped leaves with silver white centre', './libraries/images/59.jpg', 'https://creativecommons.org/licenses/by-sa/2.0/legalcode', 'Leanora'),
+  (59, 'Brunnera macrophylla "Mr Morse"', 'Large heart shaped leaves with silver white centre', './libraries/images/59.jpg', 'https://creativecommons.org/licenses/by-sa/2.0/legalcode', 'Leanora'),
   (60, 'Buddleia davidii Nanho Blue', 'Growing to 1.5 m, a more compact butterfly bush, loved by insects', './libraries/images/60.jpg', 'https://creativecommons.org/licenses/by-sa/2.0/legalcode', 'Leanora'),
   (61, 'Buddleia davidii Royal Red', 'Tall butterfly bush with heads of rich purple pink flowers', './libraries/images/61.jpg', 'https://creativecommons.org/licenses/by-sa/2.0/legalcode', 'Leanora'),
   (62, 'Buddleia x Miss Ruby', 'More compact growth than most buddleias, dark pink flowers', './libraries/images/62.jpg', 'https://creativecommons.org/licenses/by-sa/2.0/legalcode', 'Leanora'),
